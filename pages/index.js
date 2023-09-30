@@ -71,7 +71,7 @@ export default function Home() {
         const res = JSON.parse(result);
         setLoading(false);
         console.log(res);
-        if (res.message.indexOf("OTP generated successfully") === 0) {
+        if (res.message.toLowerCase().indexOf("otp") > -1 && res.message.toLowerCase().indexOf("successfully") > -1) {
           setOtpSent(true);
           setError("");
         }
@@ -126,6 +126,13 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Generate Tata Play IPTV playlist</title>
+        <meta
+  name="description"
+  content="Easiest way to generate a Tata Play IPTV (m3u) playlist for the channels you have subscribed to."
+/>
+      </Head>
       {
         <Grid columns='equal' padded centered>
           {
@@ -134,6 +141,7 @@ export default function Home() {
                 <Grid.Column></Grid.Column>
                 <Grid.Column computer={8} tablet={12} mobile={16}>
                   <Segment loading={loading}>
+                  <Header as={'h1'}>Generate Tata Play IPTV (m3u) playlist</Header>
                     <Form>
                       <Form.Group inline>
                         <label>Login via </label>
